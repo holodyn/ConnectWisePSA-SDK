@@ -26,6 +26,9 @@ class SoapApiRequester implements ConnectWiseApi
         try {
             return $this->soap->{$method}($params);
         } catch (SoapFault $fault) {
+
+            inspect( $this->soap, get_class_methods($this->soap), $this->soap->__getFunctions(), $params, $this->soap->__getLastRequest(), $fault->getMessage() );die();
+
             throw new ApiException($fault->getMessage());
         }
     }

@@ -16,7 +16,7 @@ class Opportunity
 
 
     /**
-     * Add or update a opportunity to/in CW
+     * Add opportunity to/in CW
      *
      * @throws ApiException
      * @param array $opportunity
@@ -129,15 +129,16 @@ class Opportunity
      * @param array $opportunity
      * @return array
      */
-    public function addOrUpdateOpportunityItem(array $opportunityitem)
+    public function addOrUpdateOpportunityItem(array $opportunityItem, $bypassForecastUpdate = true)
     {
         // Check for empty data array
-        if (count($opportunityitem) <= 0) {
-            throw new ApiException('No data found in opportunityitem array.');
+        if (count($opportunityItem) <= 0) {
+            throw new ApiException('No data found in opportunityItem array.');
         }
 
         $params = array(
-            'opportunityitem' => $opportunityitem
+            'item' => $opportunityItem,
+            'bypassForecastUpdate' => $bypassForecastUpdate
         );
 
         return $this->client->makeRequest('addOrUpdateOpportunityItem', $params);
