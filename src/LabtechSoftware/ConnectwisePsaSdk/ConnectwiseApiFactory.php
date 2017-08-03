@@ -59,6 +59,8 @@ class ConnectwiseApiFactory
             $cl->getSoapAddress($apiName),
             $cl->getSoapOptions()
         );
+        if (defined('CW_DEBUG'))
+            inspect($cl->getSoapAddress($apiName), $cl->getSoapOptions());
 
         return new SoapApiRequester($soap, $cl);
     }
