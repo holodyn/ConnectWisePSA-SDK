@@ -24,8 +24,11 @@ class SoapApiRequester implements ConnectWiseApi
         $params['credentials'] = $this->configLoader->getSoapCredentials();
         try {
             if (defined('CW_DEBUG'))
-                inspect($params);
-            return $this->soap->{$method}($params);
+                inspect('Request', $method, $params);
+            $res = $this->soap->{$method}($params);
+            if (defined('CW_DEBUG'))
+                inspect('Result', $method, $res);
+            return $res;
         } catch (SoapFault $fault) {
             throw new ApiException($fault->getMessage());
         }
