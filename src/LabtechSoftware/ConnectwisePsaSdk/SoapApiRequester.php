@@ -33,4 +33,9 @@ class SoapApiRequester implements ConnectWiseApi
             throw new ApiException($fault->getMessage());
         }
     }
+
+    public function getConfigLoader()
+    {
+        return $this->configLoader;
+    }
 }
